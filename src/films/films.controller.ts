@@ -1,13 +1,16 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   HttpCode,
   HttpStatus,
   Param,
+  Patch,
   Post,
 } from '@nestjs/common';
 import { CreateFilmDto } from './dto/create-film.dto';
+import { UpdateFilmDto } from './dto/update-film.dto';
 import { FilmsService } from './films.service';
 
 @Controller('films')
@@ -28,5 +31,18 @@ export class FilmsController {
   @HttpCode(HttpStatus.CREATED)
   tambah(@Body() createFilmDto: CreateFilmDto) {
     return this.filmsService.simpan(createFilmDto);
+  }
+
+  @Patch(':id')
+  perbarui(
+    @Param('id') id: string,
+    @Body() updateFilmDto: UpdateFilmDto,
+  ) {
+    return this.filmsService.perbarui(id, updateFilmDto);
+  }
+
+  @Delete(':id')
+  hapus(@Param('id') id: string) {
+    return this.filmsService.hapus(id);
   }
 }
