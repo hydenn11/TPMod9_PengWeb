@@ -8,4 +8,4 @@ import { FilmsModule } from './films/films.module';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { }
