@@ -1,4 +1,4 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { Injectable, Logger, NotFoundException } from '@nestjs/common';
 import * as fs from 'fs';
 import * as path from 'path';
 
@@ -22,5 +22,13 @@ export class AppService {
 
   getAllFilms() {
     return this.films;
+  }
+
+  getFilmById(id: string) {
+    const film = this.films.find((f) => f.id === id);
+    if (!film) {
+      throw new NotFoundException(`Film dengan ID "${id}" tidak ditemukan.`);
+    }
+    return film;
   }
 }

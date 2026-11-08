@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Param } from '@nestjs/common';
 import { AppService } from './app.service';
 
 @Controller()
@@ -13,5 +13,10 @@ export class AppController {
   @Get('films')
   getFilms() {
     return this.appService.getAllFilms();
+  }
+
+  @Get('films/:id')
+  getFilmDetail(@Param('id') id: string) {
+    return this.appService.getFilmById(id);
   }
 }
