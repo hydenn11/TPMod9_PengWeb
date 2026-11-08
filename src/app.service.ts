@@ -19,4 +19,8 @@ export class AppService {
   getHello(): string {
     return 'Hello World!';
   }
+
+  getAllFilms() {
+    return this.films;
+  }
 }
